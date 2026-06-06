@@ -14,23 +14,23 @@ segmentation, IDS/IPS, proxy/DNS, certificates, access policies, tooling, etc.).
 
 ```mermaid
 flowchart TD
-    Start([Change identified by Network Security]) --> Q1{Is this an<br/>emergency / security<br/>incident-driven change?}
+    Start([Change identified by Network Security]) --> Q1{"Is this an<br/>emergency / security<br/>incident-driven change?"}
 
     %% Emergency path
-    Q1 -- Yes --> EMG[/Tier 0 - EMERGENCY/]
+    Q1 -- Yes --> EMG[/"Tier 0 - EMERGENCY"/]
     EMG --> EMG_BEFORE["BEFORE (ASAP, may be concurrent):<br/>• Notify Incident Commander + Security leadership<br/>• Open #sec-incident bridge"]
     EMG_BEFORE --> EMG_DURING["DURING:<br/>• Post to Status Page (if user-facing)<br/>• #network-security + #all-engineering<br/>• Email exec/stakeholder DL"]
     EMG_DURING --> EMG_AFTER["AFTER (within 24h):<br/>• Post-incident review notice<br/>• Email change summary to stakeholders"]
     EMG_AFTER --> Done
 
     %% Non-emergency
-    Q1 -- No --> Q2{Customer-facing or<br/>cross-team impact?<br/>(downtime, latency,<br/>blocked access)}
+    Q1 -- No --> Q2{"Customer-facing or<br/>cross-team impact?<br/>(downtime, latency,<br/>blocked access)"}
 
-    Q2 -- "High impact" --> MAJ[/Tier 1 - MAJOR CHANGE/]
-    Q2 -- "Low / limited impact" --> Q3{Any external or<br/>internal user visible<br/>effect at all?}
+    Q2 -- "High impact" --> MAJ[/"Tier 1 - MAJOR CHANGE"/]
+    Q2 -- "Low / limited impact" --> Q3{"Any external or<br/>internal user visible<br/>effect at all?"}
 
-    Q3 -- Yes --> STD[/Tier 2 - STANDARD CHANGE/]
-    Q3 -- No --> INFO[/Tier 3 - INFORMATIONAL / ROUTINE/]
+    Q3 -- Yes --> STD[/"Tier 2 - STANDARD CHANGE"/]
+    Q3 -- No --> INFO[/"Tier 3 - INFORMATIONAL / ROUTINE"/]
 
     %% Major path
     MAJ --> MAJ_CAB["1. Submit to CAB / Change Approval<br/>(get approval first)"]
